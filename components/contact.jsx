@@ -1,88 +1,112 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Phone, Mail, MapPin, Facebook, Linkedin, Twitter } from "lucide-react"
-import { sendEmail } from "@/app/actions/send-email"
+import { useState } from "react";
+import { Phone, Mail, MapPin, Facebook, Linkedin, Twitter } from "lucide-react";
+import { sendEmail } from "@/app/actions/send-email";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     try {
-      const result = await sendEmail(formData)
+      const result = await sendEmail(formData);
 
       if (result.success) {
-        alert("ধন্যবাদ! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।")
-        setFormData({ name: "", email: "", message: "" })
+        alert("ধন্যবাদ! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।");
+        setFormData({ name: "", email: "", message: "" });
       } else {
-        alert("দুঃখিত! বার্তা পাঠাতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।")
+        alert(
+          "দুঃখিত! বার্তা পাঠাতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
+        );
       }
     } catch (error) {
-      console.error("[v0] Form submission error:", error)
-      alert("দুঃখিত! বার্তা পাঠাতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।")
+      console.error("Form submission error:", error);
+      alert(
+        "দুঃখিত! বার্তা পাঠাতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
+      );
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <section id="contact" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 text-balance">যোগাযোগ করুন</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 text-balance">
+            যোগাযোগ করুন
+          </h2>
           <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-            আমাদের সাথে যোগাযোগ করুন এবং আপনার নিরাপত্তা চাহিদা সম্পর্কে আলোচনা করুন
+            আমাদের সাথে যোগাযোগ করুন এবং আপনার নিরাপত্তা চাহিদা সম্পর্কে আলোচনা
+            করুন
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
           <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h3 className="text-2xl font-bold text-primary mb-6">বার্তা পাঠান</h3>
+            <h3 className="text-2xl font-bold text-primary mb-6">
+              বার্তা পাঠান
+            </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-primary mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-semibold text-primary mb-2"
+                >
                   নাম
                 </label>
                 <input
                   type="text"
                   id="name"
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-primary mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-semibold text-primary mb-2"
+                >
                   ইমেইল
                 </label>
                 <input
                   type="email"
                   id="email"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-primary mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-semibold text-primary mb-2"
+                >
                   বার্তা
                 </label>
                 <textarea
                   id="message"
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
                   rows={5}
                   className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent resize-none"
                   required
@@ -115,7 +139,9 @@ export default function Contact() {
                   <Mail className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
                   <div>
                     <div className="font-semibold mb-1">ইমেইল</div>
-                    <div className="text-white/80">vanguardsteam24@gmail.com</div>
+                    <div className="text-white/80">
+                      vanguardsteam24@gmail.com
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -135,7 +161,9 @@ export default function Contact() {
             </div>
 
             <div className="bg-muted p-8 rounded-lg">
-              <h3 className="text-xl font-bold text-primary mb-4">সোশ্যাল মিডিয়া</h3>
+              <h3 className="text-xl font-bold text-primary mb-4">
+                সোশ্যাল মিডিয়া
+              </h3>
               <div className="flex gap-4">
                 <a
                   href="#"
@@ -164,5 +192,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  )
+  );
 }

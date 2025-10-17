@@ -35,7 +35,7 @@ export default function Navbar() {
               <img
                 src="/logo.png"
                 alt="Logo"
-                class="h-20 w-20 object-contain"
+                className="h-20 w-20 object-contain"
               />
             </div>
             <button
