@@ -46,7 +46,7 @@ export default function Contact() {
           </h2>
           <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-            আমাদের সাথে যোগাযোগ করুন এবং আপনার নিরাপত্তা চাহিদা সম্পর্কে আলো
+            আমাদের সাথে যোগাযোগ করুন এবং আপনার নিরাপত্তা চাহিদা সম্পর্কে আলোচনা
             করুন
           </p>
         </div>
